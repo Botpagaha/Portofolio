@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0a0b;
+  --fg: #f4f4f5;
+  --muted: #a1a1aa;
+  --line: #27272a;
+  --accent: #a3e635;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--accent);
+  color: #0a0a0b;
+}
+
+/* Cursor kustom hanya untuk perangkat dengan mouse */
+@media (hover: none) {
+  .custom-cursor {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor {
+    display: none;
+  }
+}
