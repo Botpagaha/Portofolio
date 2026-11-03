@@ -46,3 +46,5 @@ src/
 ## Deploy
 
 Push ke GitHub, lalu import repositori di [Vercel](https://vercel.com) — tanpa konfigurasi tambahan.
+# Portofolio
+Ini adalah web portofolio saya
