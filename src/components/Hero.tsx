@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { profile } from "@/lib/data";
 
+const chips = ["Laravel", "Next.js", "Flutter", "Unity"];
+
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
 
@@ -23,11 +25,26 @@ export default function Hero() {
               ease: "power3.out",
             },
             "-=0.6"
+          )
+          .from(
+            ".hero-card",
+            { y: 60, opacity: 0, scale: 0.94, duration: 1.2 },
+            "-=1"
           );
 
-        // Parallax: blob dekoratif bergerak lebih lambat dari konten.
-        gsap.to(".hero-blob", {
-          yPercent: 45,
+        // Kartu kaca melayang pelan.
+        gsap.to(".hero-card-float", {
+          y: -14,
+          duration: 3.2,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+
+        // Parallax saat hero keluar dari layar.
+        gsap.to(".hero-card", {
+          yPercent: 30,
+          rotate: 4,
           ease: "none",
           scrollTrigger: {
             trigger: root.current,
@@ -58,54 +75,98 @@ export default function Hero() {
       ref={root}
       className="relative flex min-h-screen items-center overflow-hidden px-6 md:px-12"
     >
-      <div
-        aria-hidden
-        className="hero-blob pointer-events-none absolute -right-40 top-1/4 h-[520px] w-[520px] rounded-full bg-accent/20 blur-[120px]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.04] [background-image:linear-gradient(var(--fg)_1px,transparent_1px),linear-gradient(90deg,var(--fg)_1px,transparent_1px)] [background-size:64px_64px]"
-      />
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 pt-28 lg:grid-cols-[1.5fr_1fr]">
+        <div className="hero-content">
+          <p className="hero-fade glass-pill mb-6 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs uppercase tracking-[0.22em] text-muted">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_2px_rgba(52,211,153,0.7)]" />
+            {profile.role}
+          </p>
 
-      <div className="hero-content relative mx-auto w-full max-w-7xl pt-24">
-        <p className="hero-fade mb-6 text-sm uppercase tracking-[0.25em] text-muted">
-          {profile.role}
-        </p>
-
-        <h1 className="font-display text-[clamp(2.75rem,9vw,8.5rem)] font-semibold leading-[0.95] tracking-tight">
-          {profile.headline.map((w, i) => (
-            <span
-              key={i}
-              className="mr-[0.25em] inline-block overflow-hidden pb-[0.12em] align-bottom"
-            >
+          <h1 className="font-display text-[clamp(2.5rem,7vw,6.5rem)] font-semibold leading-[0.97] tracking-tight">
+            {profile.headline.map((w, i) => (
               <span
-                className={`hero-word inline-block ${
-                  w.accent ? "text-accent" : ""
-                }`}
+                key={i}
+                className="mr-[0.25em] inline-block overflow-hidden pb-[0.14em] align-bottom"
               >
-                {w.t}
+                <span
+                  className={`hero-word inline-block ${
+                    w.accent ? "text-gradient" : ""
+                  }`}
+                >
+                  {w.t}
+                </span>
               </span>
-            </span>
-          ))}
-        </h1>
+            ))}
+          </h1>
 
-        <p className="hero-fade mt-8 max-w-xl text-lg leading-relaxed text-muted">
-          {profile.intro}
-        </p>
+          <p className="hero-fade mt-8 max-w-xl text-lg leading-relaxed text-muted">
+            {profile.intro}
+          </p>
 
-        <div className="hero-fade mt-10 flex flex-wrap gap-4">
-          <a
-            href="#proyek"
-            className="rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-black transition-transform hover:scale-105"
-          >
-            Lihat proyek
-          </a>
-          <a
-            href="#kontak"
-            className="rounded-full border border-line px-7 py-3.5 text-sm font-semibold transition-colors hover:border-accent hover:text-accent"
-          >
-            Hubungi saya
-          </a>
+          <div className="hero-fade mt-10 flex flex-wrap gap-4">
+            <a
+              href="#proyek"
+              className="btn-gradient rounded-full px-7 py-3.5 text-sm font-semibold transition-transform hover:scale-105"
+            >
+              Lihat proyek
+            </a>
+            <a
+              href="#kontak"
+              className="glass-pill rounded-full px-7 py-3.5 text-sm font-semibold transition-colors hover:bg-white/15"
+            >
+              Hubungi saya
+            </a>
+          </div>
+        </div>
+
+        {/* Kartu kaca dekoratif */}
+        <div className="hero-card hidden lg:block">
+          <div className="hero-card-float glass relative rounded-[2rem] p-8">
+            <div
+              aria-hidden
+              className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-gradient-to-br from-cyan-300 to-violet-400 opacity-80 blur-sm"
+            />
+            <div className="relative">
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-300 via-violet-300 to-pink-300 font-display text-lg font-bold text-[#0b0b1e]">
+                  {profile.name.charAt(0)}
+                </div>
+                <div>
+                  <p className="font-display text-lg font-semibold">
+                    {profile.name}
+                  </p>
+                  <p className="text-sm text-muted">Terbuka untuk proyek baru</p>
+                </div>
+              </div>
+
+              <div className="my-6 h-px bg-white/15" />
+
+              <ul className="flex flex-wrap gap-2">
+                {chips.map((c) => (
+                  <li
+                    key={c}
+                    className="glass-pill rounded-full px-3.5 py-1.5 text-sm"
+                  >
+                    {c}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 grid grid-cols-2 gap-3">
+                {profile.stats.slice(0, 2).map((s) => (
+                  <div
+                    key={s.label}
+                    className="rounded-2xl bg-white/[0.06] p-4 ring-1 ring-inset ring-white/10"
+                  >
+                    <p className="font-display text-2xl font-semibold text-gradient">
+                      {s.value}
+                    </p>
+                    <p className="mt-1 text-xs text-muted">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

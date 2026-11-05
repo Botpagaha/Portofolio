@@ -63,21 +63,21 @@ export default function Contact() {
         >
           Punya ide?
           <br />
-          Mari <span className="text-accent">berkolaborasi.</span>
+          Mari <span className="text-gradient">berkolaborasi.</span>
         </h2>
 
         <div ref={area} data-reveal className="-m-10 mt-6 p-10">
           <a
             ref={btn}
             href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-base font-semibold text-black"
+            className="btn-gradient inline-flex items-center gap-3 rounded-full px-8 py-4 text-base font-semibold"
           >
             {profile.email}
             <span aria-hidden>↗</span>
           </a>
         </div>
 
-        <div className="mt-24 flex flex-col items-start justify-between gap-6 border-t border-line pt-8 text-sm text-muted md:flex-row md:items-center">
+        <div className="glass mt-24 flex flex-col items-start justify-between gap-6 rounded-3xl px-8 py-6 text-sm text-muted md:flex-row md:items-center">
           <p>
             © {new Date().getFullYear()} {profile.name}. Dibuat dengan Next.js,
             Tailwind, dan GSAP.

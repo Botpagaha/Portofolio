@@ -9,8 +9,8 @@ const links = [
 
 export default function Nav() {
   return (
-    <header className="fixed inset-x-0 top-0 z-40">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 md:px-12">
+    <header className="fixed inset-x-0 top-4 z-40 px-4">
+      <nav className="glass mx-auto flex max-w-4xl items-center justify-between rounded-full px-5 py-3 md:px-7">
         <a
           href="#top"
           className="font-display text-lg font-semibold tracking-tight"
@@ -29,7 +29,7 @@ export default function Nav() {
         </ul>
         <a
           href="#kontak"
-          className="rounded-full border border-line px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent sm:hidden"
+          className="btn-gradient rounded-full px-4 py-1.5 text-sm font-semibold"
         >
           Kontak
         </a>

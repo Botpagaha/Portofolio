@@ -1,11 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #0a0a0b;
-  --fg: #f4f4f5;
-  --muted: #a1a1aa;
-  --line: #27272a;
-  --accent: #a3e635;
+  --bg: #070714;
+  --fg: #f5f5ff;
+  --muted: #cfcfe8;
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: #67e8f9;
+  --accent-2: #c4b5fd;
+  --accent-3: #f9a8d4;
+
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-bg-strong: rgba(255, 255, 255, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --glass-blur: 22px;
 }
 
 @theme inline {
@@ -14,13 +21,22 @@
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
 }
 
 html {
-  background: var(--bg);
   color: var(--fg);
+  /* Latar ada di <html> (bukan <body>) agar orb ber-z-index negatif
+     tetap terlihat di atasnya. */
+  background:
+    radial-gradient(1200px 700px at 15% -10%, rgba(124, 58, 237, 0.22), transparent 60%),
+    radial-gradient(1000px 700px at 100% 30%, rgba(6, 182, 212, 0.14), transparent 60%),
+    radial-gradient(900px 700px at 0% 100%, rgba(236, 72, 153, 0.14), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
 }
 
 html.lenis,
@@ -38,11 +54,105 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  background: transparent;
 }
 
 ::selection {
   background: var(--accent);
-  color: #0a0a0b;
+  color: #070714;
+}
+
+/* ---------- Glassmorphism ---------- */
+
+.glass {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.11) 0%,
+      rgba(255, 255, 255, 0.03) 100%
+    ),
+    rgba(8, 8, 26, 0.38);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(170%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(170%);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.glass-pill {
+  background: linear-gradient(var(--glass-bg), var(--glass-bg)), rgba(8, 8, 26, 0.3);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+.glass-hover {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s,
+    background 0.3s;
+}
+.glass-hover:hover {
+  border-color: rgba(255, 255, 255, 0.38);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.06) 100%
+    ),
+    rgba(8, 8, 26, 0.3);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-gradient {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
+  color: #0b0b1e;
+  box-shadow:
+    0 8px 30px rgba(103, 232, 249, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ---------- Orb latar belakang ---------- */
+
+.orb {
+  position: relative;
+  border-radius: 9999px;
+  filter: blur(80px);
+  opacity: 0.42;
+  will-change: transform;
+}
+
+@keyframes drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(60px, 40px, 0) scale(1.12); }
+}
+@keyframes drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-70px, 50px, 0) scale(0.92); }
+}
+@keyframes drift-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(40px, -60px, 0) scale(1.08); }
+}
+.orb-a { animation: drift-a 18s ease-in-out infinite; }
+.orb-b { animation: drift-b 22s ease-in-out infinite; }
+.orb-c { animation: drift-c 26s ease-in-out infinite; }
+
+/* Untuk browser tanpa dukungan backdrop-filter */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .glass-pill {
+    background: rgba(30, 30, 60, 0.85);
+  }
 }
 
 /* Cursor kustom hanya untuk perangkat dengan mouse */
@@ -55,5 +165,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .custom-cursor {
     display: none;
+  }
+  .orb-a,
+  .orb-b,
+  .orb-c {
+    animation: none;
   }
 }

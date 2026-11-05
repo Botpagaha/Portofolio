@@ -14,7 +14,7 @@ export default function About() {
       ref={root}
       className="px-6 py-32 md:px-12 md:py-44"
     >
-      <div className="mx-auto grid max-w-7xl gap-16 md:grid-cols-[1fr_1.4fr]">
+      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[1fr_1.4fr]">
         <div data-reveal>
           <p className="text-sm uppercase tracking-[0.25em] text-accent">
             Tentang saya
@@ -22,24 +22,32 @@ export default function About() {
           <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
             Kode yang rapi,
             <br />
-            hasil yang terasa.
+            <span className="text-gradient">hasil yang terasa.</span>
           </h2>
         </div>
 
-        <div className="space-y-6 text-lg leading-relaxed text-muted">
-          {profile.about.map((p, i) => (
-            <p key={i} data-reveal data-delay={i * 0.1}>
-              {p}
-            </p>
-          ))}
+        <div className="space-y-6">
+          <div
+            data-reveal
+            className="glass space-y-5 rounded-3xl p-8 text-lg leading-relaxed text-muted md:p-10"
+          >
+            {profile.about.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
 
-          <dl className="grid grid-cols-3 gap-6 border-t border-line pt-10">
+          <dl className="grid grid-cols-3 gap-4">
             {profile.stats.map((s, i) => (
-              <div key={s.label} data-reveal data-delay={0.1 * i}>
-                <dt className="font-display text-4xl font-semibold text-fg md:text-5xl">
+              <div
+                key={s.label}
+                data-reveal
+                data-delay={0.1 * i}
+                className="glass glass-hover rounded-3xl p-5 md:p-7"
+              >
+                <dt className="font-display text-3xl font-semibold text-gradient md:text-5xl">
                   {s.value}
                 </dt>
-                <dd className="mt-2 text-sm">{s.label}</dd>
+                <dd className="mt-2 text-xs text-muted md:text-sm">{s.label}</dd>
               </div>
             ))}
           </dl>

@@ -33,7 +33,12 @@ src/
 
 ## Menyesuaikan tampilan
 
-- Warna: variabel `--bg`, `--fg`, `--accent` di `src/app/globals.css`.
+Tema: **glassmorphism**. Panel kaca memakai kelas `.glass` / `.glass-pill` / `.glass-hover`
+(`backdrop-filter` + border tipis + tint gelap) di `src/app/globals.css`. Orb berwarna
+di belakangnya ada di `src/components/Background.tsx`.
+
+- Warna: variabel `--bg`, `--fg`, `--accent`, `--accent-2`, `--accent-3` di `src/app/globals.css`.
+- Tingkat blur kaca: `--glass-blur`. Intensitas orb: properti `opacity` pada `.orb`.
 - Font: tautan Google Fonts di `src/app/layout.tsx`.
 - Gambar proyek: ganti blok `gradient` di `Projects.tsx` dengan `<Image>` dari `next/image`.
 
@@ -46,5 +51,3 @@ src/
 ## Deploy
 
 Push ke GitHub, lalu import repositori di [Vercel](https://vercel.com) — tanpa konfigurasi tambahan.
-# Portofolio
-Ini adalah web portofolio saya

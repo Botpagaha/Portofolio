@@ -16,7 +16,7 @@ export default function Skills() {
             Keahlian
           </p>
           <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-5xl">
-            Teknologi yang saya pakai
+            Teknologi yang <span className="text-gradient">saya pakai</span>
           </h2>
         </div>
 
@@ -26,14 +26,14 @@ export default function Skills() {
               key={g.group}
               data-reveal
               data-delay={(i % 2) * 0.1}
-              className="rounded-3xl border border-line p-8 transition-colors hover:border-accent/60"
+              className="glass glass-hover rounded-3xl p-8"
             >
               <h3 className="font-display text-xl font-semibold">{g.group}</h3>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {g.items.map((s) => (
                   <li
                     key={s}
-                    className="rounded-full bg-white/[0.05] px-4 py-2 text-sm text-muted"
+                    className="glass-pill rounded-full px-4 py-2 text-sm text-muted"
                   >
                     {s}
                   </li>
