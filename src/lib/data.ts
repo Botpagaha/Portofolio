@@ -3,16 +3,8 @@
 export const profile = {
   name: "Miftah",
   role: "Web & Mobile Developer",
-  headline: [
-    { t: "Membangun" },
-    { t: "pengalaman" },
-    { t: "digital" },
-    { t: "yang" },
-    { t: "terasa", accent: true },
-    { t: "hidup.", accent: true },
-  ],
   intro:
-    "Saya mengembangkan aplikasi web dan mobile dengan fokus pada kode yang rapi, performa yang baik, dan antarmuka yang nyaman dipakai.",
+    "Saya membangun aplikasi web dan mobile modern dengan kode yang rapi, performa yang baik, dan antarmuka yang nyaman dipakai.",
   about: [
     "Halo, saya Miftah. Saya senang mengubah masalah nyata menjadi produk yang berfungsi, mulai dari merancang struktur data dan backend hingga memoles detail antarmuka.",
     "Saat tidak menulis kode, saya mencoba teknologi baru, bereksperimen dengan animasi, dan belajar hal-hal di luar zona nyaman.",
@@ -24,9 +16,9 @@ export const profile = {
   ],
   email: "halo@domainmu.dev",
   socials: [
-    { label: "GitHub", href: "https://github.com/username" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/username" },
-    { label: "Instagram", href: "https://instagram.com/username" },
+    { label: "GitHub", short: "Gh", href: "https://github.com/username" },
+    { label: "LinkedIn", short: "In", href: "https://linkedin.com/in/username" },
+    { label: "Instagram", short: "Ig", href: "https://instagram.com/username" },
   ],
   cv: "/cv.pdf",
 };
@@ -47,7 +39,7 @@ export const projects: Project[] = [
     desc: "Sistem pengajuan dan pelacakan layanan berbasis web dengan alur persetujuan bertingkat, menggantikan proses manual berbasis dokumen.",
     role: "Full-stack developer",
     tags: ["Laravel", "MySQL", "Tailwind"],
-    gradient: "linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)",
+    gradient: "linear-gradient(135deg, #0891b2 0%, #2dd4bf 100%)",
     demo: "#",
     repo: "#",
   },
@@ -56,7 +48,7 @@ export const projects: Project[] = [
     desc: "Aplikasi lintas platform dengan fitur hitung mundur dan daftar tujuan bersama, dibangun dengan fokus pada pengalaman yang ringan dan cepat.",
     role: "Mobile developer",
     tags: ["Flutter", "Dart", "Firebase"],
-    gradient: "linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)",
+    gradient: "linear-gradient(135deg, #1d4ed8 0%, #38bdf8 100%)",
     demo: "#",
     repo: "#",
   },
@@ -65,7 +57,7 @@ export const projects: Project[] = [
     desc: "Aplikasi augmented reality yang menampilkan objek 3D interaktif dari gambar target, tanpa bergantung pada SDK pihak ketiga.",
     role: "AR developer",
     tags: ["Unity", "C#", "AR"],
-    gradient: "linear-gradient(135deg, #14b8a6 0%, #3b82f6 100%)",
+    gradient: "linear-gradient(135deg, #0f766e 0%, #34d399 100%)",
     demo: "#",
     repo: "#",
   },
@@ -74,15 +66,77 @@ export const projects: Project[] = [
     desc: "Dasbor untuk mengelola dan memvisualisasikan data dengan filter, ekspor, dan manajemen pengguna berbasis peran.",
     role: "Backend & UI",
     tags: ["Laravel", "Chart", "REST API"],
-    gradient: "linear-gradient(135deg, #f97316 0%, #ec4899 100%)",
+    gradient: "linear-gradient(135deg, #5b21b6 0%, #22d3ee 100%)",
     demo: "#",
     repo: "#",
   },
 ];
 
-export const skills = [
-  { group: "Backend", items: ["Laravel", "PHP", "MySQL", "REST API", "Node.js"] },
-  { group: "Frontend", items: ["Next.js", "React", "Tailwind CSS", "GSAP", "TypeScript"] },
-  { group: "Mobile & AR", items: ["Flutter", "Dart", "Unity", "C#"] },
-  { group: "Tools", items: ["Git & GitHub", "Linux", "Figma", "Docker"] },
+// Ikon skill berbentuk heksagon: glyph = teks singkat di dalam ikon.
+export const techs = [
+  { name: "Laravel", glyph: "Lv" },
+  { name: "PHP", glyph: "PHP" },
+  { name: "JavaScript", glyph: "JS" },
+  { name: "TypeScript", glyph: "TS" },
+  { name: "React", glyph: "Re" },
+  { name: "Next.js", glyph: "Nx" },
+  { name: "Tailwind", glyph: "Tw" },
+  { name: "Flutter", glyph: "Fl" },
+  { name: "Unity", glyph: "Un" },
+  { name: "MySQL", glyph: "SQL" },
+];
+
+export type ServiceIcon = "code" | "design" | "mobile";
+
+export const services: {
+  title: string;
+  desc: string;
+  icon: ServiceIcon;
+}[] = [
+  {
+    title: "Pengembangan Web",
+    desc: "Situs dan aplikasi web yang cepat, aman, dan mudah dirawat, dari backend hingga antarmuka.",
+    icon: "code",
+  },
+  {
+    title: "Desain UI/UX",
+    desc: "Tampilan yang bersih dan alur yang jelas, dirancang agar pengguna cepat paham dan nyaman.",
+    icon: "design",
+  },
+  {
+    title: "Aplikasi Mobile & AR",
+    desc: "Aplikasi Android/iOS lintas platform dan pengalaman augmented reality yang interaktif.",
+    icon: "mobile",
+  },
+];
+
+export const process = [
+  { title: "Diskusi", desc: "Memahami kebutuhan dan tujuan proyek." },
+  { title: "Perencanaan", desc: "Menyusun lingkup, fitur, dan jadwal." },
+  { title: "Desain", desc: "Membuat tampilan dan alur penggunaan." },
+  { title: "Pengembangan", desc: "Menulis kode, menguji, dan menyempurnakan." },
+  { title: "Peluncuran", desc: "Rilis, pemantauan, dan perbaikan lanjutan." },
+];
+
+// CONTOH — ganti dengan testimoni asli dari orang yang benar-benar
+// pernah bekerja denganmu (atau hapus section ini jika belum ada).
+export const testimonials = [
+  {
+    name: "Nama Klien",
+    role: "Jabatan, Perusahaan",
+    quote:
+      "Tulis kutipan asli di sini. Ceritakan hasil kerja sama yang paling berkesan dan dampaknya bagi proyek.",
+  },
+  {
+    name: "Nama Rekan",
+    role: "Jabatan, Instansi",
+    quote:
+      "Tulis kutipan asli di sini. Misalnya soal komunikasi, ketepatan waktu, dan kualitas hasil akhirnya.",
+  },
+  {
+    name: "Nama Dosen / Mentor",
+    role: "Jabatan, Kampus",
+    quote:
+      "Tulis kutipan asli di sini. Misalnya tentang kemampuan belajar dan kerapian pekerjaanmu.",
+  },
 ];

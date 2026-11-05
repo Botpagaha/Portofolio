@@ -3,54 +3,54 @@
 import { useRef } from "react";
 import { useReveal } from "@/lib/useReveal";
 import { profile } from "@/lib/data";
+import SectionTitle from "./SectionTitle";
+import Avatar from "./Avatar";
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
   useReveal(root);
 
   return (
-    <section
-      id="tentang"
-      ref={root}
-      className="px-6 py-32 md:px-12 md:py-44"
-    >
-      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[1fr_1.4fr]">
-        <div data-reveal>
-          <p className="text-sm uppercase tracking-[0.25em] text-accent">
-            Tentang saya
-          </p>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-            Kode yang rapi,
-            <br />
-            <span className="text-gradient">hasil yang terasa.</span>
-          </h2>
-        </div>
+    <section id="tentang" ref={root} className="px-6 py-28 md:px-12 md:py-40">
+      <div className="mx-auto max-w-5xl">
+        <SectionTitle kicker="Tentang saya" title="Mengenal" accent="lebih dekat" />
 
-        <div className="space-y-6">
-          <div
-            data-reveal
-            className="glass space-y-5 rounded-3xl p-8 text-lg leading-relaxed text-muted md:p-10"
-          >
-            {profile.about.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+        <div
+          data-reveal
+          className="glass glass-glow grid items-center gap-8 rounded-[2rem] p-6 md:grid-cols-[240px_1fr] md:gap-12 md:p-10"
+        >
+          <div className="mx-auto h-64 w-52 overflow-hidden rounded-2xl ring-1 ring-accent/40 shadow-[0_0_40px_rgba(45,226,230,0.18)] md:h-72 md:w-full">
+            <Avatar name={profile.name} letterClass="text-8xl" />
           </div>
 
-          <dl className="grid grid-cols-3 gap-4">
-            {profile.stats.map((s, i) => (
-              <div
-                key={s.label}
-                data-reveal
-                data-delay={0.1 * i}
-                className="glass glass-hover rounded-3xl p-5 md:p-7"
-              >
-                <dt className="font-display text-3xl font-semibold text-gradient md:text-5xl">
-                  {s.value}
-                </dt>
-                <dd className="mt-2 text-xs text-muted md:text-sm">{s.label}</dd>
-              </div>
-            ))}
-          </dl>
+          <div>
+            <div className="space-y-4 text-lg leading-relaxed text-muted">
+              {profile.about.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+
+            <dl className="mt-8 grid grid-cols-3 gap-3">
+              {profile.stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-2xl bg-white/[0.05] p-4 ring-1 ring-inset ring-white/10"
+                >
+                  <dt className="font-display text-2xl font-semibold text-gradient md:text-3xl">
+                    {s.value}
+                  </dt>
+                  <dd className="mt-1 text-xs text-muted">{s.label}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <a
+              href={profile.cv}
+              className="btn-glow mt-8 inline-block rounded-xl px-6 py-3 text-sm font-semibold uppercase tracking-wider"
+            >
+              Unduh CV
+            </a>
+          </div>
         </div>
       </div>
     </section>

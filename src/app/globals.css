@@ -1,18 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #070714;
-  --fg: #f5f5ff;
-  --muted: #cfcfe8;
-  --line: rgba(255, 255, 255, 0.12);
-  --accent: #67e8f9;
-  --accent-2: #c4b5fd;
-  --accent-3: #f9a8d4;
+  --bg: #040f18;
+  --fg: #eefcff;
+  --muted: #b2cfd8;
+  --line: rgba(140, 255, 245, 0.14);
+  --accent: #2de2e6;
+  --accent-2: #38bdf8;
+  --accent-3: #5eead4;
 
-  --glass-bg: rgba(255, 255, 255, 0.07);
-  --glass-bg-strong: rgba(255, 255, 255, 0.12);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-blur: 22px;
+  --glass-border: rgba(150, 255, 248, 0.2);
+  --glass-blur: 20px;
 }
 
 @theme inline {
@@ -29,12 +27,12 @@
 
 html {
   color: var(--fg);
-  /* Latar ada di <html> (bukan <body>) agar orb ber-z-index negatif
-     tetap terlihat di atasnya. */
+  /* Latar ada di <html> (bukan <body>) agar elemen ber-z-index negatif
+     (orb dan kristal) tetap terlihat di atasnya. */
   background:
-    radial-gradient(1200px 700px at 15% -10%, rgba(124, 58, 237, 0.22), transparent 60%),
-    radial-gradient(1000px 700px at 100% 30%, rgba(6, 182, 212, 0.14), transparent 60%),
-    radial-gradient(900px 700px at 0% 100%, rgba(236, 72, 153, 0.14), transparent 60%),
+    radial-gradient(1100px 700px at 12% -8%, rgba(20, 184, 166, 0.2), transparent 60%),
+    radial-gradient(1000px 700px at 100% 35%, rgba(14, 116, 190, 0.2), transparent 60%),
+    radial-gradient(900px 700px at 0% 100%, rgba(45, 226, 230, 0.12), transparent 60%),
     var(--bg);
   background-attachment: fixed;
 }
@@ -59,7 +57,7 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: #070714;
+  color: #04101a;
 }
 
 /* ---------- Glassmorphism ---------- */
@@ -68,66 +66,104 @@ body {
   background:
     linear-gradient(
       135deg,
-      rgba(255, 255, 255, 0.11) 0%,
-      rgba(255, 255, 255, 0.03) 100%
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.025) 100%
     ),
-    rgba(8, 8, 26, 0.38);
+    rgba(4, 16, 26, 0.42);
   -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(170%);
   backdrop-filter: blur(var(--glass-blur)) saturate(170%);
   border: 1px solid var(--glass-border);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+    0 10px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* Tepi bercahaya untuk panel utama */
+.glass-glow {
+  border-color: rgba(45, 226, 230, 0.38);
+  box-shadow:
+    0 0 0 1px rgba(45, 226, 230, 0.06),
+    0 0 48px rgba(45, 226, 230, 0.14),
+    0 10px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
 .glass-pill {
-  background: linear-gradient(var(--glass-bg), var(--glass-bg)), rgba(8, 8, 26, 0.3);
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.07)),
+    rgba(4, 16, 26, 0.3);
   -webkit-backdrop-filter: blur(14px) saturate(160%);
   backdrop-filter: blur(14px) saturate(160%);
   border: 1px solid var(--glass-border);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .glass-hover {
   transition:
     transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
     border-color 0.3s,
+    box-shadow 0.3s,
     background 0.3s;
 }
 .glass-hover:hover {
-  border-color: rgba(255, 255, 255, 0.38);
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.16) 0%,
-      rgba(255, 255, 255, 0.06) 100%
-    ),
-    rgba(8, 8, 26, 0.3);
+  border-color: rgba(45, 226, 230, 0.5);
+  box-shadow:
+    0 0 36px rgba(45, 226, 230, 0.16),
+    0 10px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .text-gradient {
-  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+  background: linear-gradient(90deg, var(--accent-3), var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+/* Tombol isi gradien */
 .btn-gradient {
-  background: linear-gradient(120deg, var(--accent), var(--accent-2) 55%, var(--accent-3));
-  color: #0b0b1e;
+  background: linear-gradient(120deg, var(--accent-3), var(--accent) 55%, var(--accent-2));
+  color: #03121a;
   box-shadow:
-    0 8px 30px rgba(103, 232, 249, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    0 8px 30px rgba(45, 226, 230, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
-/* ---------- Orb latar belakang ---------- */
+/* Tombol kaca dengan garis neon */
+.btn-glow {
+  color: var(--accent);
+  background: rgba(45, 226, 230, 0.07);
+  border: 1px solid rgba(45, 226, 230, 0.7);
+  box-shadow:
+    0 0 20px rgba(45, 226, 230, 0.28),
+    inset 0 0 14px rgba(45, 226, 230, 0.12);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s,
+    background 0.3s;
+}
+.btn-glow:hover {
+  background: rgba(45, 226, 230, 0.16);
+  box-shadow:
+    0 0 32px rgba(45, 226, 230, 0.5),
+    inset 0 0 18px rgba(45, 226, 230, 0.2);
+}
+
+/* Heksagon untuk ikon skill */
+.hex {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/* ---------- Orb & kristal latar ---------- */
 
 .orb {
   position: relative;
   border-radius: 9999px;
   filter: blur(80px);
-  opacity: 0.42;
+  opacity: 0.38;
   will-change: transform;
 }
 
@@ -147,11 +183,21 @@ body {
 .orb-b { animation: drift-b 22s ease-in-out infinite; }
 .orb-c { animation: drift-c 26s ease-in-out infinite; }
 
+/* Melayang naik-turun (kristal dan kartu mengambang) */
+@keyframes bob {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -16px, 0) rotate(3deg); }
+}
+.bob { animation: bob 6s ease-in-out infinite; }
+.bob-slow { animation: bob 9s ease-in-out infinite; }
+.bob-rev { animation: bob 7.5s ease-in-out infinite reverse; }
+
 /* Untuk browser tanpa dukungan backdrop-filter */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .glass,
-  .glass-pill {
-    background: rgba(30, 30, 60, 0.85);
+  .glass-pill,
+  .btn-glow {
+    background: rgba(8, 26, 40, 0.9);
   }
 }
 
@@ -168,7 +214,10 @@ body {
   }
   .orb-a,
   .orb-b,
-  .orb-c {
+  .orb-c,
+  .bob,
+  .bob-slow,
+  .bob-rev {
     animation: none;
   }
 }
